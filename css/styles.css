@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'Satisfy';
+    src: url('/Satisfy-Regular.ttf') format('truetype');
+}
+
+div.stickyhead {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: flex-start; /* Align items to the start (left) of the container */
+    align-items: center; /* Center items vertically within the container */
+    padding: 10px; /* Optional: Add padding to provide space around the elements */
+    background-color: #1A2C38;
+    color: white;
+    height: 50px; /* Set the desired height for the sticky header */
+}
+
+
+.Home {
+    width: 5%;
+    font-size: 150%;
+    height: auto;
+    font-family: 'Satisfy', sans-serif;
+}
+
+.Bal {
+    margin-left: auto; /* Center the element horizontally */
+    margin-right: auto; /* Center the element horizontally */
+}
+
+.balance {
+    background-color: #ffffff; /* Set background color for the balance box */
+    padding: 5px 10px; /* Set padding for the balance box */
+    border-radius: 5px; /* Optional: Add rounded corners to the balance box */
+    color: #1A2C38; /* Set text color for the balance box */
+    font-weight: bold; /* Optional: Set font weight for the balance box */
+}
+
+body {
+    background-color: rgb(48, 55, 59);
+    color: white
+}
