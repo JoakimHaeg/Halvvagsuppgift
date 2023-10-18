@@ -3,38 +3,98 @@
     src: url('/Satisfy-Regular.ttf') format('truetype');
 }
 
-div.stickyhead {
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: flex-start; /* Align items to the start (left) of the container */
-    align-items: center; /* Center items vertically within the container */
-    padding: 10px; /* Optional: Add padding to provide space around the elements */
-    background-color: #1A2C38;
-    color: white;
-    height: 50px; /* Set the desired height for the sticky header */
+/* The navigation bar */
+body, .navbar {
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    overflow: hidden;
+    background-color: #1b2b39;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adding a box shadow */
 }
 
+  /* Links inside the navbar */
+/* Links inside the navbar */
+.navbar a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
 
-.Home {
-    width: 5%;
-    font-size: 150%;
-    height: auto;
-    font-family: 'Satisfy', sans-serif;
+/* Position links */
+.navbar a:nth-child(1) {
+    float: left; /* Home link to the left */
+    transition: background 0.3s, color 0.3s;
+}
+
+.navbar a:nth-child(2) {
+    float: right; /* Contact link to the right */
+    transition: background 0.3s, color 0.3s;
 }
 
 .Bal {
-    margin-left: auto; /* Center the element horizontally */
-    margin-right: auto; /* Center the element horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px; /* Set the height of the .Bal container to 100% */
+    margin: 0;
+    padding: 0;
+}
+
+.balance-text {
+    background-color: #252525;
+    color: white;
+    padding: 5px;
+    border-top-left-radius: 5px; /* Applies border-radius only to the top left corner */
+    border-bottom-left-radius: 5px; /* Applies border-radius only to the bottom left corner */
+}
+.balance-bal {
+    background-color: #444444;
+    color: white; /* Set the text color to white or your desired color */
+    padding: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .balance {
-    background-color: #ffffff; /* Set background color for the balance box */
-    padding: 5px 10px; /* Set padding for the balance box */
-    border-radius: 5px; /* Optional: Add rounded corners to the balance box */
-    color: #1A2C38; /* Set text color for the balance box */
-    font-weight: bold; /* Optional: Set font weight for the balance box */
+    background-color: #444444; /* Set your desired background color here */
+    /* You can also add more styles if needed */
+    padding: 5px;
 }
+
+/* Change background on mouse-over */
+.navbar a:hover {
+    background: #ddd;
+    color: rgb(0, 0, 0);
+}
+
+  /* Main content */
+.main {
+    margin-top: 65px;
+    text-align: center; /* Center the content inside the .main div */
+}
+
+.genRace {
+    background-color: #4CAF50; /* Set the background color of the button */
+    color: white; /* Set the text color of the button */
+    padding: 15px 32px; /* Set padding for the button */
+    font-size: 16px; /* Set the font size of the button text */
+    border: none; /* Remove border from the button */
+    cursor: pointer; /* Add a pointer cursor to the button */
+    border-radius: 5px; /* Optional: Add rounded corners to the button */
+}
+
+/* Change button color on hover */
+.genRace:hover {
+    background-color: #45a049;
+}
+
 
 body {
     background-color: rgb(48, 55, 59);
