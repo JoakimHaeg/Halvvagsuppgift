@@ -96,7 +96,7 @@ body, .navbar {
 }
 
 .raceLayout {
-    width: 90%; /* Set the width of the box */
+    width: 95%; /* Set the width of the box */
     height: 70%; /* Set the height of the box */
     background-color: #1b2b39; /* Set the background color of the box */
     position: absolute; /* Position the box */
@@ -106,17 +106,10 @@ body, .navbar {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#container {
-    display: flex;
-    flex-direction: column; /* Set the direction to column to arrange cars vertically */
-    align-items: center; /* Center items along the cross axis (horizontally in this case) */
-}
-
 /* Style for the car images */
 #container img {
     margin-bottom: 10px; 
     z-index: 1;/* Add some space between the cars */
-    /* Add other styles for the car images */
 }
 
 body {
