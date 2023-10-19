@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Race Game</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <script src="/js/script.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -14,7 +13,11 @@
         <p class="Bal"><span class="balance-text">Balance</span><span class="balance-bal">100000 £</span></p>
     </div>
     <div class="main">
-        <button class="genRace">Generate a race</button>
+        
+        <button class="genRace" onclick="raceGen()">Generate a race</button>
+        <div class="raceLayout"></div>
     </div>
+    <div id="container"></div>
 </body>
 </html>
+<script src="/js/script.js"></script>
