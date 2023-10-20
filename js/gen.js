@@ -11,6 +11,8 @@ function raceGen() {
     let imgWidth = 50;
     let imgHeight = 50;
     let yOffset = 22.5;
+    document.querySelector('.genRace').style.display = 'none';
+    document.querySelector('.startRace').style.display = 'inline-block';
 
     for (let i = 0; i < Math.floor(Math.random() * 10 + 2); i++) {
         let img = document.createElement("img");

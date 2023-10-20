@@ -10,14 +10,18 @@
     <div class="navbar">
         <a href="#home">Home</a>
         <a href="#contact">Contact</a>
-        <p class="Bal"><span class="balance-text">Balance</span><span class="balance-bal">100000 £</span></p>
+        <p class="Bal"><span class="balance-text">Balance</span><span class="balance-bal">100000</span></p>
     </div>
     <div class="main">
-        
         <button class="genRace" onclick="raceGen()">Generate a race</button>
+        <button class="startRace" onclick="raceStart()">Start race</button>
         <div class="raceLayout"></div>
+        <form class="betting">
+            <input type="number" placeholder="Enter a bet" id="amountBet"> <!-- använder in min="0" eller step="1" eftersom att använder kan fortarande skriva decimaler eller negativa nummer-->
+        </form>
     </div>
     <div id="container"></div>
 </body>
 </html>
-<script src="/js/script.js"></script>
+<script src="/js/gen.js"></script>
+<script src="/js/start.js"></script>
