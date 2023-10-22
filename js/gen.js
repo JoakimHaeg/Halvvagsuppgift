@@ -17,14 +17,21 @@ function raceGen() {
     for (let i = 0; i < Math.floor(Math.random() * 10 + 2); i++) {
         let img = document.createElement("img");
         let btn = document.createElement("button")
+        
+        //Button
         btn.textContent = `Bet on car ${i + 1}`;
-        btn.style.backgroundColor = "#4CAF50";
+        btn.id = "btnthing"
+        btn.style.backgroundColor = "#444444";
         btn.style.color = "white";
-        btn.style.padding = "15px 32px";
-        btn.style.fontSize = "16px";
+        btn.style.padding = "10px 24px";
+        btn.style.fontSize = "14px";
         btn.style.border = "none";
         btn.style.cursor = "pointer";
-        btn.style.borderRadius = "5px";
+        btn.style.borderRadius = "3px";
+        btn.style.position = "absolute";
+        btn.style.left = 90 + "%"
+        btn.style.top = 0.25 + yOffset + i * 7.1 + "%";
+        //Image
         img.id = "car" + (i + 1);
         img.src = "/images/car.png";
         img.alt = "Car " + (i + 1);
