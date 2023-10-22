@@ -144,12 +144,6 @@ body, .navbar {
     margin: 0;
 }
 
-/* For other browsers that support number input */
-.betting input[type="number"] {
-    -moz-appearance: textfield;
-}
-
-
 
 /* Style for the container thingys*/
 #container {
