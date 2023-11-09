@@ -110,34 +110,29 @@ body, .navbar {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.betting input[type="number"]::placeholder {
-    /* Center placeholder text both horizontally and vertically */
-    text-align: center;
-    vertical-align: middle;
-}
-
-.red-placeholder::placeholder {
-    color: red;
+.betting {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .betting input[type="number"] {
-    /* Center entered numbers both horizontally and vertically */
-    text-align: center;
-    vertical-align: middle;
-    /* Remove up and down arrows for number input */
-    -webkit-appearance: none;
-    -moz-appearance: textfield;
-    appearance: textfield;
-    background-color: #1b2b39;
     color: white;
+    background: transparent;
     border: none;
+    outline: none;
+    text-align: center;
+    font-size: 16px;
+    width: 200px; /* Adjust the width as needed */
     padding: 10px;
-    border-radius: 5px;
-    outline: none; /* Remove outline on focus (optional) */
-    margin-top: 2%;
+    
 }
 
-/* For Firefox */
 .betting input[type="number"]::-webkit-inner-spin-button,
 .betting input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;

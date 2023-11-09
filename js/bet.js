@@ -1,1 +1,0 @@
-let betadded = document.getElementById("amountBet");
