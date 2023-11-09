@@ -80,7 +80,7 @@ body, .navbar {
     text-align: center; /* Center the content inside the .main div */
 }
 
-.genRace {
+.genRace, .startRace {
     background-color: #4CAF50; /* Set the background color of the button */
     color: white; /* Set the text color of the button */
     padding: 15px 32px; /* Set padding for the button */
@@ -91,8 +91,12 @@ body, .navbar {
 }
 
 /* Change button color on hover */
-.genRace:hover {
+.genRace:hover, .startRace:hover {
     background-color: #45a049;
+}
+
+.startRace {
+    display: none;
 }
 
 .raceLayout {
@@ -106,8 +110,43 @@ body, .navbar {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for the car images */
-#container img {
+.betting input[type="number"]::placeholder {
+    /* Center placeholder text both horizontally and vertically */
+    text-align: center;
+    vertical-align: middle;
+}
+
+.red-placeholder::placeholder {
+    color: red;
+}
+
+.betting input[type="number"] {
+    /* Center entered numbers both horizontally and vertically */
+    text-align: center;
+    vertical-align: middle;
+    /* Remove up and down arrows for number input */
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    background-color: #1b2b39;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none; /* Remove outline on focus (optional) */
+    margin-top: 2%;
+}
+
+/* For Firefox */
+.betting input[type="number"]::-webkit-inner-spin-button,
+.betting input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Style for the container thingys*/
+#container {
     margin-bottom: 10px; 
     z-index: 1;/* Add some space between the cars */
 }

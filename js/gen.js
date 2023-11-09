@@ -12,19 +12,39 @@ function raceGen() {
     let imgWidth = 50;
     let imgHeight = 50;
     let yOffset = 22.5;
+    document.querySelector('.genRace').style.display = 'none';
+    document.querySelector('.startRace').style.display = 'inline-block';
 
     for (let i = 0; i < Math.floor(Math.random() * 10 + 2); i++) {
         let img = document.createElement("img");
+        let btn = document.createElement("button")
+        
+        //Button
+        btn.textContent = `Bet on car ${i + 1}`;
+        btn.id = "btnthing"
+        btn.style.backgroundColor = "#444444";
+        btn.style.color = "white";
+        btn.style.padding = "10px 24px";
+        btn.style.fontSize = "14px";
+        btn.style.border = "none";
+        btn.style.cursor = "pointer";
+        btn.style.borderRadius = "3px";
+        btn.style.position = "absolute";
+        btn.style.left = 90 + "%"
+        btn.style.top = 0.25 + yOffset + i * 7.1 + "%";
+        //Image
         img.id = "car" + (i + 1);
         img.src = "/images/car.png";
         img.alt = "Car " + (i + 1);
         img.style.position = "absolute";
         img.style.left = "3.5%";
         img.style.top = yOffset + i * 7.1 + "%";
+        container.appendChild(btn)
 
+        
+        img.onload = function () { // img.onload eftersom att bilden måste ha laddat in för canvas att kunna rita, annars ritas en blank canvas
         /* Använde mig av chatgpt då mitt förra försök av att modifiera färgen av car.png var misslyckande.
         Men förstår lite vad detta gör*/
-        img.onload = function () { // img.onload eftersom att bilden måste ha laddat in för canvas att kunna rita, annars ritas en blank canvas
             let canvas = document.createElement("canvas"); //Skapar en canvas
             let ctx = canvas.getContext("2d"); //Skapar en rityta i 2d
             canvas.width = imgWidth; // den rityta som canvasen kommer arbeta på är i samma bredd som imgwidth
