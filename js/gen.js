@@ -2,7 +2,6 @@ function randomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
 
-
 let container = document.getElementById("container");
 
 function raceGen() {
@@ -20,7 +19,7 @@ function raceGen() {
         
         //Button
         btn.textContent = `Bet on car ${i + 1}`;
-        btn.id = "btnthing"
+        btn.id = "btnbet" + (i + 1);
         btn.style.backgroundColor = "#444444";
         btn.style.color = "white";
         btn.style.padding = "10px 24px";
@@ -29,10 +28,33 @@ function raceGen() {
         btn.style.cursor = "pointer";
         btn.style.borderRadius = "3px";
         btn.style.position = "absolute";
-        btn.style.left = 90 + "%"
+        btn.style.left = 87.5 + "%"
         btn.style.top = 0.25 + yOffset + i * 7.1 + "%";
+        btn.addEventListener("click", function() {
+            document.querySelector('.genRace').style.display = 'none';
+            document.querySelector('.startRace').style.display = 'none';
+            document.querySelectorAll('#btnbet').forEach(function(button) {
+                button.style.display = 'none';
+            });
+            document.querySelector('.betting').style.display = 'flex';
+        })
+        document.querySelector('.betting').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let betCar = imgId;
+            let betAmount = document.getElementById('amountBet').value;
+            let bets = [betAmount, betCar];
+            console.log(bets);
+            document.getElementById('amountBet').value = '';
+            document.querySelector('.startRace').style.display = 'none';
+            document.querySelectorAll('#btnbet').forEach(function(button) {
+                button.style.display = 'inline-block';
+            });
+            document.querySelector('.betting').style.display = 'none';
+            document.querySelector('.startRace').style.display = 'inline-block';
+        });
         //Image
-        img.id = "car" + (i + 1);
+        let imgId = "car" + (i + 1);
+        img.id = imgId;
         img.src = "/images/car.png";
         img.alt = "Car " + (i + 1);
         img.style.position = "absolute";

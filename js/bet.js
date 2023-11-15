@@ -1,1 +1,1 @@
-let betadded = document.getElementById("amountBet");d
+let betadded = document.getElementById("amountBet");
