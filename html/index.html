@@ -16,12 +16,13 @@
         <button class="genRace" onclick="raceGen()">Generate a race</button>
         <button class="startRace" onclick="raceStart()">Start race</button>
         <div class="raceLayout"></div>
-        <form class="betting">
+        <form class="betting" onsubmit="formsub(event)">
             <input type="number" placeholder="Enter a bet" id="amountBet"> <!-- använder inte min="0" eller step="1" eftersom att använder kan fortarande skriva decimaler eller negativa nummer-->
         </form>
     </div>
+    <div class="winner"></div>
     <div id="container"></div>
 </body>
 </html>
 <script src="/js/gen.js"></script>
-<script src="/js/start.js"></script>
+<script src="/js/bet.js"></script>

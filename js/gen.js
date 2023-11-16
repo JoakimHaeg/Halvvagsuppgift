@@ -3,6 +3,9 @@ function randomColor() {
 }
 
 let container = document.getElementById("container");
+let carbet;
+let raceInProgress = false;  // Declare raceInProgress in the global scope
+let winner = null;
 
 function raceGen() {
     container.innerHTML = "";
@@ -11,15 +14,17 @@ function raceGen() {
     let imgHeight = 50;
     let yOffset = 22.5;
     document.querySelector('.genRace').style.display = 'none';
-    document.querySelector('.startRace').style.display = 'inline-block';
+
+    let carPositions = [];
 
     for (let i = 0; i < Math.floor(Math.random() * 10 + 2); i++) {
         let img = document.createElement("img");
-        let btn = document.createElement("button")
-        
-        //Button
+        let btn = document.createElement("button");
+
+        // Button
         btn.textContent = `Bet on car ${i + 1}`;
         btn.id = "btnbet" + (i + 1);
+        btn.classList.add("bet-button");
         btn.style.backgroundColor = "#444444";
         btn.style.color = "white";
         btn.style.padding = "10px 24px";
@@ -28,31 +33,15 @@ function raceGen() {
         btn.style.cursor = "pointer";
         btn.style.borderRadius = "3px";
         btn.style.position = "absolute";
-        btn.style.left = 87.5 + "%"
+        btn.style.left = 87.5 + "%";
         btn.style.top = 0.25 + yOffset + i * 7.1 + "%";
-        btn.addEventListener("click", function() {
-            document.querySelector('.genRace').style.display = 'none';
-            document.querySelector('.startRace').style.display = 'none';
-            document.querySelectorAll('#btnbet').forEach(function(button) {
-                button.style.display = 'none';
-            });
+        container.appendChild(btn);
+        btn.addEventListener("click", function () {
+            carbet = "car" + (i + 1);
             document.querySelector('.betting').style.display = 'flex';
-        })
-        document.querySelector('.betting').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let betCar = imgId;
-            let betAmount = document.getElementById('amountBet').value;
-            let bets = [betAmount, betCar];
-            console.log(bets);
-            document.getElementById('amountBet').value = '';
-            document.querySelector('.startRace').style.display = 'none';
-            document.querySelectorAll('#btnbet').forEach(function(button) {
-                button.style.display = 'inline-block';
-            });
-            document.querySelector('.betting').style.display = 'none';
-            document.querySelector('.startRace').style.display = 'inline-block';
         });
-        //Image
+
+        // Image
         let imgId = "car" + (i + 1);
         img.id = imgId;
         img.src = "/images/car.png";
@@ -60,24 +49,85 @@ function raceGen() {
         img.style.position = "absolute";
         img.style.left = "3.5%";
         img.style.top = yOffset + i * 7.1 + "%";
-        container.appendChild(btn)
 
-        
-        img.onload = function () { // img.onload eftersom att bilden måste ha laddat in för canvas att kunna rita, annars ritas en blank canvas
-        /* Använde mig av chatgpt då mitt förra försök av att modifiera färgen av car.png var misslyckande.
-        Men förstår lite vad detta gör*/
-            let canvas = document.createElement("canvas"); //Skapar en canvas
-            let ctx = canvas.getContext("2d"); //Skapar en rityta i 2d
-            canvas.width = imgWidth; // den rityta som canvasen kommer arbeta på är i samma bredd som imgwidth
-            canvas.height = imgHeight; // den rityta som canvasen kommer arbeta på är i samma höjd som imgheight
-            ctx.drawImage(img, 0, 0, imgWidth, imgHeight); // har ritar den
-            ctx.globalCompositeOperation = "source-in"; // har ingen aning vad detta är
-            ctx.fillStyle = randomColor(); // har slumpar den färgen
-            ctx.fillRect(0, 0, canvas.width, canvas.height); // har fyller den ritningen för att få en komplett bild
-            img.onload = null; // Så att den inte ändrar färg om och om igen
-            img.src = canvas.toDataURL(); // har byter den från canvas till img
-            container.appendChild(img);
+        img.onload = function () {
+            let canvas = document.createElement("canvas");
+            let ctx = canvas.getContext("2d");
+            canvas.width = imgWidth;
+            canvas.height = imgHeight;
+            ctx.drawImage(img, 0, 0, imgWidth, imgHeight);
+            ctx.globalCompositeOperation = "source-in";
+            ctx.fillStyle = randomColor();
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            img.onload = null;
+            img.src = canvas.toDataURL();
+        };
+
+        // Track car positions
+        carPositions.push({
+            id: imgId,
+            buttonId: "btnbet" + (i + 1),
+            position: 0,
+            speed: Math.random() * 2 + 1,
+        });
+
+        container.appendChild(img);
+    }
+
+    function animate() {
+        if (raceInProgress) {
+            carPositions.forEach(car => {
+                car.position += car.speed;
+
+                if (car.position >= container.clientWidth - imgWidth - 50) {
+                    if (!winner) {
+                        winner = car.id;
+                        if (winner === carbet) {
+                            document.querySelector('.winner').innerHTML = `Winner: ${winner} <br> you won ${amountBet * (carPositions.length)} sek`;
+                        } else {
+                            document.querySelector('.winner').innerHTML = `Winner: ${winner} <br> you lost ${amountBet} sek`;
+                        }
+                        
+                        console.log(winner)
+                        // Hide the buttons with the class 'bet-button'
+                        let betButtons = document.querySelectorAll('.bet-button');
+                        betButtons.forEach(button => {
+                            // Check if the button corresponds to the winning car
+                            if (carPositions.some(c => c.buttonId === button.id)) {
+                                button.style.display = 'none';
+                            }
+                        });
+
+                        raceInProgress = false;
+                    }
+                }
+
+                let img = document.getElementById(car.id);
+
+                // Check if the img element exists
+                if (img) {
+                    img.style.position = "absolute";
+                    img.style.left = car.position + "px";
+                    img.style.top = yOffset + carPositions.findIndex(c => c.id === car.id) * 7.1 + "%";
+                }
+            });
+
+            requestAnimationFrame(animate);
         }
     }
-}
 
+    // Define raceStart in the global scope
+    window.raceStart = function () {
+        let betButtons = document.querySelectorAll('.bet-button');
+        betButtons.forEach(button => {
+            // Check if the button corresponds to the winning car
+            if (carPositions.some(c => c.buttonId === button.id)) {
+                button.style.display = 'none';
+            }
+        });
+        document.querySelector('.startRace').style.display = 'none';
+        raceInProgress = true;
+        winner = null;
+        animate();
+    };
+}

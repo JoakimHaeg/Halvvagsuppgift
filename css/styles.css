@@ -139,6 +139,17 @@ body, .navbar {
     margin: 0;
 }
 
+.winner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
 
 /* Style for the container thingys*/
 #container {
